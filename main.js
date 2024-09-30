@@ -11,29 +11,38 @@ const options = {
   },
 };
 
-const renderMovies = function (data, classname = '') {
-  const html = `
+
+const getMovies = function () {
+  fetch('https://api.themoviedb.org/3/movie/changes', options)
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch(err => console.error(err));
+
+
+    
+  const renderMovies = function (data) {
+    const html = `
     <div class="movie-grid">
     <div class="movie-card">
-    <img src="${data}" alt="Filme 1" />
+    <img src="${data.images[0]}" alt="Filme 1" />
     <div class="movie-info">
     <h4>Filme 1</h4>
     </div>
     </div>
     <div class="movie-card">
-    <img src="${data}" alt="Filme 2" />
+    <img src="${data.images[0]}" alt="Filme 2" />
     <div class="movie-info">
     <h4>Filme 2</h4>
     </div>
     </div>
     <div class="movie-card">
-    <img src="${data}" alt="Filme 3" />
+    <img src="${data.images[0]}" alt="Filme 3" />
     <div class="movie-info">
     <h4>Filme 3</h4>
     </div>
     </div>
     <div class="movie-card">
-    <img src="${data}" alt="Filme 4" />
+    <img src="${data.images[0]}" alt="Filme 4" />
     <div class="movie-info">
     <h4>Filme 4</h4>
     </div>
@@ -41,12 +50,8 @@ const renderMovies = function (data, classname = '') {
     </div>
     </div>`;
 
-  moviesContainer.insertAdjacentHTML('beforeend', html);
+    moviesContainer.insertAdjacentHTML('beforeend', html);
+  };
 };
 
-const getMovies = function () {
-  fetch('https://api.themoviedb.org/3/configuration', options)
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err));
-};
+getMovies();
