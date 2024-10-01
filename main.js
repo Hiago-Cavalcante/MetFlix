@@ -11,38 +11,39 @@ const options = {
   },
 };
 
-
 const getMovies = function () {
-  fetch('https://api.themoviedb.org/3/movie/changes', options)
+  fetch('https://api.themoviedb.org/3/discover/movie', options)
     .then(response => response.json())
-    .then(response => console.log(response))
+    .then(data => {
+      console.log(data);
+      renderMovies(data);
+    })
     .catch(err => console.error(err));
+};
 
-
-    
-  const renderMovies = function (data) {
-    const html = `
+const renderMovies = function (data) {
+  const html = `
     <div class="movie-grid">
     <div class="movie-card">
-    <img src="${data.images[0]}" alt="Filme 1" />
+    <img src="https://image.tmdb.org/t/p/w500${data.results[0].poster_path}" alt="Filme 1" />
     <div class="movie-info">
     <h4>Filme 1</h4>
     </div>
     </div>
     <div class="movie-card">
-    <img src="${data.images[0]}" alt="Filme 2" />
+    <img src="https://image.tmdb.org/t/p/w500${data.results[1].poster_path}" alt="Filme 2" />
     <div class="movie-info">
     <h4>Filme 2</h4>
     </div>
     </div>
     <div class="movie-card">
-    <img src="${data.images[0]}" alt="Filme 3" />
+    <img src="https://image.tmdb.org/t/p/w500${data.results[2].poster_path}" alt="Filme 3" />
     <div class="movie-info">
     <h4>Filme 3</h4>
     </div>
     </div>
     <div class="movie-card">
-    <img src="${data.images[0]}" alt="Filme 4" />
+    <img src="https://image.tmdb.org/t/p/w500${data.results[5].poster_path}" alt="Filme 4" />
     <div class="movie-info">
     <h4>Filme 4</h4>
     </div>
@@ -50,8 +51,7 @@ const getMovies = function () {
     </div>
     </div>`;
 
-    moviesContainer.insertAdjacentHTML('beforeend', html);
-  };
+  moviesContainer.insertAdjacentHTML('beforeend', html);
 };
 
 getMovies();
