@@ -27,10 +27,11 @@ nav a {
   margin: 0 15px;
 }
 .hero {
-  background-image: url('https://image.tmdb.org/t/p/w500/dTaqzXA1auKRUjHPQjR3u0W7Gfl.jpg');
-  background-size: cover;
-  height: 400px;
+  /* background-image: url('https://image.tmdb.org/t/p/w500/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg');
+  background-size: 30%; */
+  height: 300px;
   display: flex;
+  padding-bottom: 200;
   align-items: center;
   justify-content: center;
 }
